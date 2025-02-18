@@ -9,7 +9,7 @@ classifier_inpur_dir    = /Data/jdas/47_100_PA_CD_data/NGC6637/21Dec2024/res
 classifier_output_dir   = /Data/jdas/47_100_PA_CD_data/NGC6637/21Dec2024/res
 
 #Search type flag
-search_type = 1  # 0 for full search, 1 for sorting and folding only
+search_type = 0  # 0 for full search, 1 for sorting and folding only
 
 #Classification flag\
 do_classify = 1  # 0 for classification enabled, 1 for classification disabled
@@ -31,7 +31,7 @@ period_tol_sort       = 0.5    # Tolerance for grouping candidates with similar 
 low_period            = 1.0    # Minimum period (in ms) to consider for candidates.
 high_period           = 10000.0 # Maximum period (in ms) to consider for candidates.
 SNR_cut               = 4.0    # Signal-to-noise ratio (SNR) threshold for filtering weak signals.
-fold_type             = 2      # Folding type:
+fold_type             = 0      # Folding type:
                                 #   0 = Fold into DAT files only
                                 #   1 = Fold into FIL files only
                                 #   2 = Fold into both DAT and FIL files

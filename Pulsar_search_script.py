@@ -33,6 +33,7 @@ try:
     from candidate_sifting import *
     from removing_duplicate_candidates import *
     from candidate_folding import *
+    from ps_to_png import *
     from candidate_classification import *
     logging.info("Modules imported successfully.")
 except ImportError as e:
@@ -115,6 +116,9 @@ def main():
 
     # Run the folding
     candidate_folding(folding_input_dir, folding_output_dir, search_input_file_dir, search_output_dir, fil_file, accel_bin, workers, fold_type, DM_array)
+
+    # Step 7: Convert the PS file into PNG files
+    batch_convert_ps_to_png(folding_output_dir, folding_output_dir, workers, keyword = os.path.splitext(os.path.basename(fil_file))[0])
 
     # Step 7: Load parameters, and launch the candidate classifier if selected
     # Get the classifier flag
