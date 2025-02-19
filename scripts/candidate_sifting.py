@@ -63,16 +63,18 @@ def candidate_sifting(input_dir, output_dir, fil_file, DM_array, accel_bin, peri
 
         for j in range(3, b - 4):
             line_split = list(filter(lambda x: x != "", lines[j].split(" ")))
+
+            if low_period <= np.multiply(float(line_split[5].split("(")[0])) <= high_period:
             
-            try:
-                Sigma_array[m][j] = float(line_split[1])
-                Coherent_Power_array[m][j] = float(line_split[3])
-                Periodicity_array[m][j] = float(line_split[5].split("(")[0])
-                r_bin_array[m][j] = float(line_split[7].split("(")[0])
-                z_bin_array[m][j] = float(line_split[9].split("(")[0])
-            except (IndexError, ValueError):
-                print(f"Warning: Malformed data on line {j+1} in {file_path}")
-                continue
+                try:
+                    Sigma_array[m][j] = float(line_split[1])
+                    Coherent_Power_array[m][j] = float(line_split[3])
+                    Periodicity_array[m][j] = float(line_split[5].split("(")[0])
+                    r_bin_array[m][j] = float(line_split[7].split("(")[0])
+                    z_bin_array[m][j] = float(line_split[9].split("(")[0])
+                except (IndexError, ValueError):
+                    print(f"Warning: Malformed data on line {j+1} in {file_path}")
+                    continue
 
     # Filtering unique r_bin values
     r_bin_flatten = r_bin_array.flatten()
