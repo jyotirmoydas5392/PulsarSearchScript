@@ -64,7 +64,7 @@ def candidate_sifting(input_dir, output_dir, fil_file, DM_array, accel_bin, peri
         for j in range(3, b - 4):
             line_split = list(filter(lambda x: x != "", lines[j].split(" ")))
 
-            if low_period <= np.multiply(float(line_split[5].split("(")[0])) <= high_period:
+            if low_period <= float(line_split[5].split("(")[0]) <= high_period:
             
                 try:
                     Sigma_array[m][j] = float(line_split[1])
