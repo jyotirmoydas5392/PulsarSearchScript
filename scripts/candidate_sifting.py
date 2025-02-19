@@ -115,7 +115,7 @@ def candidate_sifting(input_dir, output_dir, fil_file, DM_array, accel_bin, peri
         DM_slope = (DM_filtering_cut_1000 - DM_filtering_cut_10) / 0.990
         DM_intercept = DM_filtering_cut_10 - (DM_slope * 0.010)
 
-        DM_filtering_cut = int((DM_intercept + (DM_slope * Periodicity_array[index[0][0]][index[1][0]])) / dm_step)
+        DM_filtering_cut = int((DM_intercept + (DM_slope * Periodicity_array[index[0][0]][index[1][0]]/1000)) / dm_step)
 
         # New condition to ensure DM_filtering_cut doesn't exceed allowable range
         max_DM_filtering_cut = int((end_DM - start_DM) / dm_step)
@@ -123,7 +123,7 @@ def candidate_sifting(input_dir, output_dir, fil_file, DM_array, accel_bin, peri
             DM_filtering_cut = max_DM_filtering_cut
             print(f"DM_filtering_cut is greater than the allowable range. It has been set to {DM_filtering_cut}.")
 
-        print(f"For Period {Periodicity_array[index[0][0]][index[1][0]]} sec, DM tolerance is {DM_filtering_cut * dm_step} pc/cc")
+        print(f"For Period {Periodicity_array[index[0][0]][index[1][0]]/1000} sec, DM tolerance is {DM_filtering_cut * dm_step} pc/cc")
 
         for group in DM_groups:
             if len(group) >= DM_filtering_cut:

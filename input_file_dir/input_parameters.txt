@@ -9,7 +9,7 @@ classifier_inpur_dir    = /home/jdas/data/47_100_PA_CD_data/NGC6637/31Jan2025/re
 classifier_output_dir   = /home/jdas/data/47_100_PA_CD_data/NGC6637/31Jan2025/res
 
 #Search type flag
-search_type = 0  # 0 for full search, 1 for sorting and folding only
+search_type = 1  # 0 for full search, 1 for sorting and folding only
 
 #Classification flag\
 do_classify = 1  # 0 for classification enabled, 1 for classification disabled
