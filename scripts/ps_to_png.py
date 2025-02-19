@@ -3,18 +3,27 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import subprocess
 
 def convert_ps_to_png_with_rotation(ps_file, png_file):
-    """
-    Converts a PS file to a PNG file and rotates it if necessary.
-    :param ps_file: Path to the input PS file.
-    :param png_file: Path to the output PNG file.
-    """
     try:
-        # Convert PS to PNG using Ghostscript
-        subprocess.run(["gs", "-dNOPAUSE", "-sDEVICE=pngalpha", "-r300", 
-                        f"-sOutputFile={png_file}", ps_file, "-c", "quit"], check=True)
-        print(f"Converted: {ps_file} -> {png_file}")
+        # Ghostscript command to convert PS to PNG with 270-degree rotation
+        command = [
+            "gs",
+            "-dBATCH",                        # Batch mode: exit after processing files
+            "-dNOPAUSE",                      # Disable pause after each page
+            "-dSAFER",                        # Restrict file operations for safety
+            "-dAutoRotatePages=/None",        # Prevent auto-rotation of pages
+            "-sDEVICE=png16m",                # Use the 24-bit color PNG output device
+            "-r360",                          # Set resolution to 360 DPI
+            f"-sOutputFile={png_file}",       # Specify the output file
+            "-c", "<</Orientation 3>> setpagedevice",  # Rotate 270 degrees (90 degrees counterclockwise)
+            "-f", ps_file                     # Specify the input PostScript file
+        ]
+
+        # Run the Ghostscript command
+        subprocess.run(command, check=True)
+        print(f"Successfully converted {ps_file} to {png_file} with a 270-degree rotation")
+
     except subprocess.CalledProcessError as e:
-        print(f"Error converting {ps_file}: {e}")
+        print(f"Error during conversion: {e}")
 
 def batch_convert_ps_to_png(input_dir, output_dir, workers, keyword):
     """
