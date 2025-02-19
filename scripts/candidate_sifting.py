@@ -65,7 +65,6 @@ def candidate_sifting(input_dir, output_dir, fil_file, DM_array, accel_bin, peri
             line_split = list(filter(lambda x: x != "", lines[j].split(" ")))
 
             if low_period <= float(line_split[5].split("(")[0]) <= high_period:
-            
                 try:
                     Sigma_array[m][j] = float(line_split[1])
                     Coherent_Power_array[m][j] = float(line_split[3])
