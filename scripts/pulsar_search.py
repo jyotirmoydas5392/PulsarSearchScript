@@ -65,19 +65,6 @@ def search_pulsar(input_dir, output_dir, fil_file, DM_array, dm_step, total_obs_
         fft_strings.append(fft_cmd)
         accel_strings.append(accel_cmd)
 
-    # Print out the commands for debugging
-    print("Generated Dedisp Commands:")
-    for cmd in dedisp_strings:
-        print(cmd)
-
-    print("Generated FFT Commands:")
-    for cmd in fft_strings:
-        print(cmd)
-
-    print("Generated Accelsearch Commands:")
-    for cmd in accel_strings:
-        print(cmd)
-
     # Function for running all processes in parallel
     def main():
         # Store the current working directory (base directory)

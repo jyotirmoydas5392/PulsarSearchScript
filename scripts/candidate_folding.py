@@ -57,8 +57,12 @@ def generate_folding_commands(candidates, file_name, accel_bin, output_dir, fil_
     return dat_folding_strings, fil_folding_strings
 
 def folding(cmd):
-    """Executes a given shell command."""
-    subprocess.run(cmd, shell=True, check=True)
+    """Execute fold command."""
+    try:
+        print(f"Running folding command: {command}")
+        subprocess.run(cmd, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing ddp command: {e}")
 
 def candidate_folding(input_dir, output_dir, fil_file_dir, dat_file_dir, fil_file, accel_bin, workers, fold_type, DM_array):
     """
